@@ -20,9 +20,11 @@ locals {
 }
 
 data "http" "pingdom_ranges" {
-  url = "https://my.pingdom.com/probes/${var.protocol}"
+  // url = "https://my.pingdom.com/probes/${var.protocol}"
+  url = "https://${var.email}:${var.password}@api.pingdom.com/probes"
 
   request_headers {
-    "Accept" = "application/json"
+    "Accept" = "application/json",
+    "App-Key" = "${var.app_key}"
   }
 }
